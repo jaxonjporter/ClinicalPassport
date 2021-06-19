@@ -6,30 +6,24 @@ namespace ClinicalPassport.Models
 {
 	public class TaskCompletion
 	{
-		[Key]
-		[DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-		public int TaskCompletionID { get; set; }
-		
-		[ForeignKey("TaskID")]
-		public int TaskID { get; set; }
+		public int TaskCompletionId { get; set; }
 
-		public Task Task { get; set; }
-		[ForeignKey("StudentUserID")]
-		public int StudentUserID { get; set; }
+		[ForeignKey("TaskId")]
+		public int TaskId { get; set; }
 
-		public User Student { get; set; }
-		[ForeignKey("FacultyUserID")]
+		[ForeignKey("UserId")]
+		public int StudentUserId { get; set; }
 
-		public int FacultyUserID { get; set; }
+		[ForeignKey("UserId")]
+		public int FacultyUserId { get; set; }
 
-		public User Faculty { get; set; }
-		[ForeignKey("PreceptorUserID")]
+		[ForeignKey("UserId")]
+		public int PreceptorUserId { get; set; }
 
-		public int PreceptorUserID { get; set; }
-
-		public User Preceptor { get; set; }
 		public string PreceptorInitial { get; set; }
+
 		public DateTime InitialDate { get; set; }
+
 		public int TaskRating { get; set; }
     }
 }
