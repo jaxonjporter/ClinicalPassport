@@ -31,9 +31,9 @@ namespace ClinicalPassport
 				configuration.RootPath = "ClientApp/build";
 			});
 
-			services.AddDbContext<TestContext>(
+			services.AddDbContext<ClinicalPassportContext>(
 				options => options.UseSqlServer(
-					Configuration.GetConnectionString("TestContext")));
+					Configuration.GetConnectionString("ClinicalPassportContext")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
