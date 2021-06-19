@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicalPassport.Migrations
 {
     [DbContext(typeof(ClinicalPassportContext))]
-    [Migration("20210615015637_initial")]
+    [Migration("20210619193846_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,7 +60,7 @@ namespace ClinicalPassport.Migrations
 
             modelBuilder.Entity("ClinicalPassport.Models.Task", b =>
                 {
-                    b.Property<int>("TaskID")
+                    b.Property<int>("TaskId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -74,7 +74,7 @@ namespace ClinicalPassport.Migrations
                     b.Property<bool>("Required")
                         .HasColumnType("bit");
 
-                    b.HasKey("TaskID");
+                    b.HasKey("TaskId");
 
                     b.HasIndex("CategoryID");
 
@@ -83,70 +83,70 @@ namespace ClinicalPassport.Migrations
                     b.HasData(
                         new
                         {
-                            TaskID = 1,
+                            TaskId = 1,
                             CategoryID = 1,
                             Description = "Discharge Summary",
                             Required = true
                         },
                         new
                         {
-                            TaskID = 2,
+                            TaskId = 2,
                             CategoryID = 2,
                             Description = "Aseptic Technique Before Surgery",
                             Required = true
                         },
                         new
                         {
-                            TaskID = 3,
+                            TaskId = 3,
                             CategoryID = 3,
                             Description = "Bone Density Study - Adult",
                             Required = false
                         },
                         new
                         {
-                            TaskID = 4,
+                            TaskId = 4,
                             CategoryID = 4,
                             Description = "ADD/ADHD Diagnosis - Child",
                             Required = true
                         },
                         new
                         {
-                            TaskID = 5,
+                            TaskId = 5,
                             CategoryID = 1,
                             Description = "History and Physical - Adult",
                             Required = true
                         },
                         new
                         {
-                            TaskID = 6,
+                            TaskId = 6,
                             CategoryID = 2,
                             Description = "Assist in Surgery",
                             Required = true
                         },
                         new
                         {
-                            TaskID = 7,
+                            TaskId = 7,
                             CategoryID = 3,
                             Description = "Apgar Score - Infant",
                             Required = true
                         },
                         new
                         {
-                            TaskID = 8,
+                            TaskId = 8,
                             CategoryID = 4,
                             Description = "ADD/ADHD Diagnosis - Adolescent",
                             Required = true
                         },
                         new
                         {
-                            TaskID = 9,
+                            TaskId = 9,
                             CategoryID = 1,
                             Description = "History and Physical - Infant",
                             Required = true
                         },
                         new
                         {
-                            TaskID = 10,
+                            TaskId = 10,
                             CategoryID = 1,
                             Description = "History and Physical - Child",
                             Required = true
@@ -155,15 +155,12 @@ namespace ClinicalPassport.Migrations
 
             modelBuilder.Entity("ClinicalPassport.Models.TaskCompletion", b =>
                 {
-                    b.Property<int>("TaskCompletionID")
+                    b.Property<int>("TaskCompletionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("FacultyUserID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("FacultyUserID1")
+                    b.Property<int>("FacultyUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("InitialDate")
@@ -172,114 +169,101 @@ namespace ClinicalPassport.Migrations
                     b.Property<string>("PreceptorInitial")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PreceptorUserID")
+                    b.Property<int>("PreceptorUserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PreceptorUserID1")
+                    b.Property<int>("StudentUserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StudentUserID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StudentUserID1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TaskID")
+                    b.Property<int>("TaskId")
                         .HasColumnType("int");
 
                     b.Property<int>("TaskRating")
                         .HasColumnType("int");
 
-                    b.HasKey("TaskCompletionID");
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("FacultyUserID");
+                    b.HasKey("TaskCompletionId");
 
-                    b.HasIndex("FacultyUserID1");
+                    b.HasIndex("TaskId");
 
-                    b.HasIndex("PreceptorUserID");
-
-                    b.HasIndex("PreceptorUserID1");
-
-                    b.HasIndex("StudentUserID");
-
-                    b.HasIndex("StudentUserID1");
-
-                    b.HasIndex("TaskID");
+                    b.HasIndex("UserId");
 
                     b.ToTable("TaskCompletions");
 
                     b.HasData(
                         new
                         {
-                            TaskCompletionID = 1,
-                            FacultyUserID = 1111117,
-                            InitialDate = new DateTime(2021, 6, 14, 19, 56, 36, 935, DateTimeKind.Local).AddTicks(8533),
+                            TaskCompletionId = 1,
+                            FacultyUserId = 1111117,
+                            InitialDate = new DateTime(2021, 6, 19, 13, 38, 45, 842, DateTimeKind.Local).AddTicks(2445),
                             PreceptorInitial = "JP",
-                            PreceptorUserID = 1111112,
-                            StudentUserID = 1111115,
-                            TaskID = 1,
+                            PreceptorUserId = 1111112,
+                            StudentUserId = 1111115,
+                            TaskId = 1,
                             TaskRating = 4
                         },
                         new
                         {
-                            TaskCompletionID = 2,
-                            FacultyUserID = 1111117,
-                            InitialDate = new DateTime(2021, 6, 14, 19, 56, 36, 938, DateTimeKind.Local).AddTicks(2792),
+                            TaskCompletionId = 2,
+                            FacultyUserId = 1111117,
+                            InitialDate = new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7482),
                             PreceptorInitial = "JP",
-                            PreceptorUserID = 1111112,
-                            StudentUserID = 1111115,
-                            TaskID = 2,
+                            PreceptorUserId = 1111112,
+                            StudentUserId = 1111115,
+                            TaskId = 2,
                             TaskRating = 5
                         },
                         new
                         {
-                            TaskCompletionID = 3,
-                            FacultyUserID = 1111117,
-                            InitialDate = new DateTime(2021, 6, 14, 19, 56, 36, 938, DateTimeKind.Local).AddTicks(2840),
+                            TaskCompletionId = 3,
+                            FacultyUserId = 1111117,
+                            InitialDate = new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7727),
                             PreceptorInitial = "JP",
-                            PreceptorUserID = 1111112,
-                            StudentUserID = 1111115,
-                            TaskID = 4,
+                            PreceptorUserId = 1111112,
+                            StudentUserId = 1111115,
+                            TaskId = 4,
                             TaskRating = 4
                         },
                         new
                         {
-                            TaskCompletionID = 4,
-                            FacultyUserID = 1111117,
-                            InitialDate = new DateTime(2021, 6, 14, 19, 56, 36, 938, DateTimeKind.Local).AddTicks(2844),
+                            TaskCompletionId = 4,
+                            FacultyUserId = 1111117,
+                            InitialDate = new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7749),
                             PreceptorInitial = "JP",
-                            PreceptorUserID = 1111112,
-                            StudentUserID = 1111115,
-                            TaskID = 5,
+                            PreceptorUserId = 1111112,
+                            StudentUserId = 1111115,
+                            TaskId = 5,
                             TaskRating = 2
                         },
                         new
                         {
-                            TaskCompletionID = 5,
-                            FacultyUserID = 1111117,
-                            InitialDate = new DateTime(2021, 6, 14, 19, 56, 36, 938, DateTimeKind.Local).AddTicks(2847),
+                            TaskCompletionId = 5,
+                            FacultyUserId = 1111117,
+                            InitialDate = new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7767),
                             PreceptorInitial = "JP",
-                            PreceptorUserID = 1111112,
-                            StudentUserID = 1111114,
-                            TaskID = 1,
+                            PreceptorUserId = 1111112,
+                            StudentUserId = 1111114,
+                            TaskId = 1,
                             TaskRating = 5
                         },
                         new
                         {
-                            TaskCompletionID = 6,
-                            FacultyUserID = 1111117,
-                            InitialDate = new DateTime(2021, 6, 14, 19, 56, 36, 938, DateTimeKind.Local).AddTicks(2851),
+                            TaskCompletionId = 6,
+                            FacultyUserId = 1111117,
+                            InitialDate = new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7782),
                             PreceptorInitial = "JP",
-                            PreceptorUserID = 1111112,
-                            StudentUserID = 1111115,
-                            TaskID = 9,
+                            PreceptorUserId = 1111112,
+                            StudentUserId = 1111115,
+                            TaskId = 9,
                             TaskRating = 3
                         });
                 });
 
             modelBuilder.Entity("ClinicalPassport.Models.User", b =>
                 {
-                    b.Property<int>("UserID")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -302,14 +286,14 @@ namespace ClinicalPassport.Migrations
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserID");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
-                            UserID = 1111111,
+                            UserId = 1111111,
                             Address = "123 Anywhere Street",
                             Email = "dw22@gmail.com",
                             FirstName = "Dwayne 'The Rock'",
@@ -319,7 +303,7 @@ namespace ClinicalPassport.Migrations
                         },
                         new
                         {
-                            UserID = 1111112,
+                            UserId = 1111112,
                             Address = "123 Anywhere Street",
                             Email = "jaxonutah@gmail.com",
                             FirstName = "Jaxon",
@@ -329,7 +313,7 @@ namespace ClinicalPassport.Migrations
                         },
                         new
                         {
-                            UserID = 1111113,
+                            UserId = 1111113,
                             Address = "123 Anywhere Street",
                             Email = "fm@gmail.com",
                             FirstName = "Freddie",
@@ -339,7 +323,7 @@ namespace ClinicalPassport.Migrations
                         },
                         new
                         {
-                            UserID = 1111114,
+                            UserId = 1111114,
                             Address = "123 Anywhere Street",
                             Email = "dw22@gmail.com",
                             FirstName = "Henry",
@@ -349,7 +333,7 @@ namespace ClinicalPassport.Migrations
                         },
                         new
                         {
-                            UserID = 1111115,
+                            UserId = 1111115,
                             Address = "1 Anywhere Street",
                             Email = "dw22@gmail.com",
                             FirstName = "Micheal",
@@ -359,7 +343,7 @@ namespace ClinicalPassport.Migrations
                         },
                         new
                         {
-                            UserID = 1111116,
+                            UserId = 1111116,
                             Address = "432 Anywhere Street",
                             Email = "cb@gmail.com",
                             FirstName = "Creed",
@@ -369,7 +353,7 @@ namespace ClinicalPassport.Migrations
                         },
                         new
                         {
-                            UserID = 1111117,
+                            UserId = 1111117,
                             Address = "123 Pensylvania ave",
                             Email = "pv@gmail.com",
                             FirstName = "Phyllis",
@@ -392,52 +376,23 @@ namespace ClinicalPassport.Migrations
 
             modelBuilder.Entity("ClinicalPassport.Models.TaskCompletion", b =>
                 {
-                    b.HasOne("ClinicalPassport.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("FacultyUserID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("ClinicalPassport.Models.User", "Faculty")
-                        .WithMany()
-                        .HasForeignKey("FacultyUserID1");
-
-                    b.HasOne("ClinicalPassport.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("PreceptorUserID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("ClinicalPassport.Models.User", "Preceptor")
-                        .WithMany()
-                        .HasForeignKey("PreceptorUserID1");
-
-                    b.HasOne("ClinicalPassport.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("StudentUserID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("ClinicalPassport.Models.User", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentUserID1");
-
-                    b.HasOne("ClinicalPassport.Models.Task", "Task")
+                    b.HasOne("ClinicalPassport.Models.Task", null)
                         .WithMany("TaskCompletions")
-                        .HasForeignKey("TaskID")
+                        .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Faculty");
-
-                    b.Navigation("Preceptor");
-
-                    b.Navigation("Student");
-
-                    b.Navigation("Task");
+                    b.HasOne("ClinicalPassport.Models.User", null)
+                        .WithMany("TaskCompletions")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("ClinicalPassport.Models.Task", b =>
+                {
+                    b.Navigation("TaskCompletions");
+                });
+
+            modelBuilder.Entity("ClinicalPassport.Models.User", b =>
                 {
                     b.Navigation("TaskCompletions");
                 });

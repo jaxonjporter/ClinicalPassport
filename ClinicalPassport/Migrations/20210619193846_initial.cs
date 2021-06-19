@@ -24,7 +24,7 @@ namespace ClinicalPassport.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserID = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -35,14 +35,14 @@ namespace ClinicalPassport.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.UserID);
+                    table.PrimaryKey("PK_Users", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Tasks",
                 columns: table => new
                 {
-                    TaskID = table.Column<int>(type: "int", nullable: false)
+                    TaskId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryID = table.Column<int>(type: "int", nullable: false),
@@ -50,7 +50,7 @@ namespace ClinicalPassport.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tasks", x => x.TaskID);
+                    table.PrimaryKey("PK_Tasks", x => x.TaskId);
                     table.ForeignKey(
                         name: "FK_Tasks_Categories_CategoryID",
                         column: x => x.CategoryID,
@@ -63,60 +63,31 @@ namespace ClinicalPassport.Migrations
                 name: "TaskCompletions",
                 columns: table => new
                 {
-                    TaskCompletionID = table.Column<int>(type: "int", nullable: false)
+                    TaskCompletionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TaskID = table.Column<int>(type: "int", nullable: false),
-                    StudentUserID = table.Column<int>(type: "int", nullable: false),
-                    StudentUserID1 = table.Column<int>(type: "int", nullable: true),
-                    FacultyUserID = table.Column<int>(type: "int", nullable: false),
-                    FacultyUserID1 = table.Column<int>(type: "int", nullable: true),
-                    PreceptorUserID = table.Column<int>(type: "int", nullable: false),
-                    PreceptorUserID1 = table.Column<int>(type: "int", nullable: true),
+                    TaskId = table.Column<int>(type: "int", nullable: false),
+                    StudentUserId = table.Column<int>(type: "int", nullable: false),
+                    FacultyUserId = table.Column<int>(type: "int", nullable: false),
+                    PreceptorUserId = table.Column<int>(type: "int", nullable: false),
                     PreceptorInitial = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InitialDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TaskRating = table.Column<int>(type: "int", nullable: false)
+                    TaskRating = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TaskCompletions", x => x.TaskCompletionID);
+                    table.PrimaryKey("PK_TaskCompletions", x => x.TaskCompletionId);
                     table.ForeignKey(
-                        name: "FK_TaskCompletions_Tasks_TaskID",
-                        column: x => x.TaskID,
+                        name: "FK_TaskCompletions_Tasks_TaskId",
+                        column: x => x.TaskId,
                         principalTable: "Tasks",
-                        principalColumn: "TaskID",
+                        principalColumn: "TaskId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TaskCompletions_Users_FacultyUserID",
-                        column: x => x.FacultyUserID,
+                        name: "FK_TaskCompletions_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserID");
-                    table.ForeignKey(
-                        name: "FK_TaskCompletions_Users_FacultyUserID1",
-                        column: x => x.FacultyUserID1,
-                        principalTable: "Users",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_TaskCompletions_Users_PreceptorUserID",
-                        column: x => x.PreceptorUserID,
-                        principalTable: "Users",
-                        principalColumn: "UserID");
-                    table.ForeignKey(
-                        name: "FK_TaskCompletions_Users_PreceptorUserID1",
-                        column: x => x.PreceptorUserID1,
-                        principalTable: "Users",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_TaskCompletions_Users_StudentUserID",
-                        column: x => x.StudentUserID,
-                        principalTable: "Users",
-                        principalColumn: "UserID");
-                    table.ForeignKey(
-                        name: "FK_TaskCompletions_Users_StudentUserID1",
-                        column: x => x.StudentUserID1,
-                        principalTable: "Users",
-                        principalColumn: "UserID",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -133,7 +104,7 @@ namespace ClinicalPassport.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserID", "Address", "Email", "FirstName", "LastName", "Phone", "Role" },
+                columns: new[] { "UserId", "Address", "Email", "FirstName", "LastName", "Phone", "Role" },
                 values: new object[,]
                 {
                     { 1111111, "123 Anywhere Street", "dw22@gmail.com", "Dwayne 'The Rock'", "Johnson", "4358858888", "admin" },
@@ -147,7 +118,7 @@ namespace ClinicalPassport.Migrations
 
             migrationBuilder.InsertData(
                 table: "Tasks",
-                columns: new[] { "TaskID", "CategoryID", "Description", "Required" },
+                columns: new[] { "TaskId", "CategoryID", "Description", "Required" },
                 values: new object[,]
                 {
                     { 2, 2, "Aseptic Technique Before Surgery", true },
@@ -164,51 +135,26 @@ namespace ClinicalPassport.Migrations
 
             migrationBuilder.InsertData(
                 table: "TaskCompletions",
-                columns: new[] { "TaskCompletionID", "FacultyUserID", "FacultyUserID1", "InitialDate", "PreceptorInitial", "PreceptorUserID", "PreceptorUserID1", "StudentUserID", "StudentUserID1", "TaskID", "TaskRating" },
+                columns: new[] { "TaskCompletionId", "FacultyUserId", "InitialDate", "PreceptorInitial", "PreceptorUserId", "StudentUserId", "TaskId", "TaskRating", "UserId" },
                 values: new object[,]
                 {
-                    { 2, 1111117, null, new DateTime(2021, 6, 14, 19, 56, 36, 938, DateTimeKind.Local).AddTicks(2792), "JP", 1111112, null, 1111115, null, 2, 5 },
-                    { 3, 1111117, null, new DateTime(2021, 6, 14, 19, 56, 36, 938, DateTimeKind.Local).AddTicks(2840), "JP", 1111112, null, 1111115, null, 4, 4 },
-                    { 1, 1111117, null, new DateTime(2021, 6, 14, 19, 56, 36, 935, DateTimeKind.Local).AddTicks(8533), "JP", 1111112, null, 1111115, null, 1, 4 },
-                    { 5, 1111117, null, new DateTime(2021, 6, 14, 19, 56, 36, 938, DateTimeKind.Local).AddTicks(2847), "JP", 1111112, null, 1111114, null, 1, 5 },
-                    { 4, 1111117, null, new DateTime(2021, 6, 14, 19, 56, 36, 938, DateTimeKind.Local).AddTicks(2844), "JP", 1111112, null, 1111115, null, 5, 2 },
-                    { 6, 1111117, null, new DateTime(2021, 6, 14, 19, 56, 36, 938, DateTimeKind.Local).AddTicks(2851), "JP", 1111112, null, 1111115, null, 9, 3 }
+                    { 2, 1111117, new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7482), "JP", 1111112, 1111115, 2, 5, null },
+                    { 3, 1111117, new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7727), "JP", 1111112, 1111115, 4, 4, null },
+                    { 1, 1111117, new DateTime(2021, 6, 19, 13, 38, 45, 842, DateTimeKind.Local).AddTicks(2445), "JP", 1111112, 1111115, 1, 4, null },
+                    { 5, 1111117, new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7767), "JP", 1111112, 1111114, 1, 5, null },
+                    { 4, 1111117, new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7749), "JP", 1111112, 1111115, 5, 2, null },
+                    { 6, 1111117, new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7782), "JP", 1111112, 1111115, 9, 3, null }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaskCompletions_FacultyUserID",
+                name: "IX_TaskCompletions_TaskId",
                 table: "TaskCompletions",
-                column: "FacultyUserID");
+                column: "TaskId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaskCompletions_FacultyUserID1",
+                name: "IX_TaskCompletions_UserId",
                 table: "TaskCompletions",
-                column: "FacultyUserID1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TaskCompletions_PreceptorUserID",
-                table: "TaskCompletions",
-                column: "PreceptorUserID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TaskCompletions_PreceptorUserID1",
-                table: "TaskCompletions",
-                column: "PreceptorUserID1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TaskCompletions_StudentUserID",
-                table: "TaskCompletions",
-                column: "StudentUserID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TaskCompletions_StudentUserID1",
-                table: "TaskCompletions",
-                column: "StudentUserID1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TaskCompletions_TaskID",
-                table: "TaskCompletions",
-                column: "TaskID");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_CategoryID",
