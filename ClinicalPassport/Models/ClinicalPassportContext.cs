@@ -186,22 +186,6 @@ namespace ClinicalPassport.Models
                 }
             );
 
-            //modelBuilder.Entity<TaskCompletion>()
-            //    .HasOne<User>()
-            //    .WithMany()
-            //    .HasForeignKey(tc => tc.PreceptorUserId)
-            //    .OnDelete(DeleteBehavior.NoAction);
-            //modelBuilder.Entity<TaskCompletion>()
-            //    .HasOne<User>()
-            //    .WithMany()
-            //    .HasForeignKey(tc => tc.StudentUserID)
-            //    .OnDelete(DeleteBehavior.NoAction);
-            //modelBuilder.Entity<TaskCompletion>()
-            //    .HasOne<User>()
-            //    .WithMany()
-            //    .HasForeignKey(tc => tc.FacultyUserId)
-            //    .OnDelete(DeleteBehavior.NoAction);
-
             modelBuilder.Entity<TaskCompletion>()
                 .HasData(
                 new TaskCompletion
