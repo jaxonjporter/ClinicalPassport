@@ -11,6 +11,8 @@ namespace ClinicalPassport.Models
 		[ForeignKey("TaskId")]
 		public int TaskId { get; set; }
 
+		public Task Task  { get; set; }
+
 		[ForeignKey("UserId")]
 		public int StudentUserId { get; set; }
 
