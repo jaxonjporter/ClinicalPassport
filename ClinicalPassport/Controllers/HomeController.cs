@@ -17,8 +17,10 @@ namespace ClinicalPassport.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        [Route("/test/{userId}")]
+        public IActionResult Index(string userId)
         {
+
             var data = _context.Users;
             return Json(data);
         }

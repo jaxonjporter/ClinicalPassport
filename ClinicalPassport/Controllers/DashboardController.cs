@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace ClinicalPassport.Controllers
 {
-    public class DashboardController : Controller
+    [ApiController]
+    public class DashboardController : ControllerBase
     {
         private ClinicalPassportContext _context { get; set; }
 
@@ -16,17 +17,24 @@ namespace ClinicalPassport.Controllers
             _context = ctx;
         }
 
+        //[HttpGet]
+        //public IActionResult Index()
+        //{
+        //    return Json("Hi");
+        //}
+
         [HttpGet]
-        public IActionResult Index()
+        public List<User> Index(int id)
         {
-            return Json("Hi");
+            var users = _context.Users.ToList();
+            return users;
         }
-
-
-        [HttpPost]
-        public IActionResult Index(int userId)
+        
+        [HttpGet]
+        public List<User> Users(int id)
         {
-            return Json(userId);
+            var users = _context.Users.Where(u=> u.UserId == id).ToList();
+            return users;
         }
     }
 }

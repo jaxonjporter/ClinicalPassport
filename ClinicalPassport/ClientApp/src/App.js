@@ -7,7 +7,7 @@ import { Container } from 'semantic-ui-react'
 
 
 import './custom.css'
-import Dashboard from './components/dashboard/dashboard';
+import DashboardApp from './components/dashboard/DashboardApp';
 import { Login } from './components/login/Login';
 import { AuthContext } from './components/login/AuthProvider';
 
@@ -18,12 +18,13 @@ export default function App (props) {
                 <Route exact path='/login' component={Login} />
                 <ProtectedRoute exact path='/counter' component={Counter} />
                 <ProtectedRoute exact path='/fetch-data' component={FetchData} />
-                <ProtectedRoute exact path='/' component={Dashboard} />
+                <ProtectedRoute exact path='/' component={DashboardApp} />
                 <ProtectedRoute exact path='/logout' component={Logout} />
             </Container >
             </NavBar>
     );
 }
+
 
 function ProtectedRoute ({ component: Component, ...rest }) {
     const {state} = useContext(AuthContext)

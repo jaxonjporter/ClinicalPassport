@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react'
+﻿import React, { useState, useEffect } from 'react'
 import { Menu, Header, Segment} from 'semantic-ui-react'
 import DashboardTab from './DashboardTab'
 
@@ -13,6 +13,7 @@ export default function Dashboard(props) {
 
     const updateActiveTab = (e, { name }) => {setActiveTab(name)}
 
+   
 
     return (
         <div>

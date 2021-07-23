@@ -61,6 +61,9 @@ namespace ClinicalPassport
 				endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller}/{action=Index}/{id?}");
+				endpoints.MapControllerRoute(
+					name: "api",
+					pattern: "{controller}/{action=Index}/{id?}");
 			});
 
 			app.UseSpa(spa =>
