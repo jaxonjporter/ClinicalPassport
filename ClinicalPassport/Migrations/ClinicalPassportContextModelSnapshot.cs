@@ -179,14 +179,9 @@ namespace ClinicalPassport.Migrations
                     b.Property<int>("TaskRating")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("TaskCompletionId");
 
                     b.HasIndex("TaskId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("TaskCompletions");
 
@@ -195,7 +190,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 1,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 6, 19, 13, 38, 45, 842, DateTimeKind.Local).AddTicks(2445),
+                            InitialDate = new DateTime(2021, 7, 26, 20, 19, 23, 39, DateTimeKind.Local).AddTicks(8999),
                             PreceptorInitial = "JP",
                             PreceptorUserId = 1111112,
                             StudentUserId = 1111115,
@@ -206,7 +201,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 2,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7482),
+                            InitialDate = new DateTime(2021, 7, 26, 20, 19, 23, 41, DateTimeKind.Local).AddTicks(7812),
                             PreceptorInitial = "JP",
                             PreceptorUserId = 1111112,
                             StudentUserId = 1111115,
@@ -217,7 +212,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 3,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7727),
+                            InitialDate = new DateTime(2021, 7, 26, 20, 19, 23, 41, DateTimeKind.Local).AddTicks(7844),
                             PreceptorInitial = "JP",
                             PreceptorUserId = 1111112,
                             StudentUserId = 1111115,
@@ -228,7 +223,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 4,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7749),
+                            InitialDate = new DateTime(2021, 7, 26, 20, 19, 23, 41, DateTimeKind.Local).AddTicks(7849),
                             PreceptorInitial = "JP",
                             PreceptorUserId = 1111112,
                             StudentUserId = 1111115,
@@ -239,7 +234,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 5,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7767),
+                            InitialDate = new DateTime(2021, 7, 26, 20, 19, 23, 41, DateTimeKind.Local).AddTicks(7852),
                             PreceptorInitial = "JP",
                             PreceptorUserId = 1111112,
                             StudentUserId = 1111114,
@@ -250,7 +245,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 6,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7782),
+                            InitialDate = new DateTime(2021, 7, 26, 20, 19, 23, 41, DateTimeKind.Local).AddTicks(7855),
                             PreceptorInitial = "JP",
                             PreceptorUserId = 1111112,
                             StudentUserId = 1111115,
@@ -374,25 +369,13 @@ namespace ClinicalPassport.Migrations
 
             modelBuilder.Entity("ClinicalPassport.Models.TaskCompletion", b =>
                 {
-                    b.HasOne("ClinicalPassport.Models.Task", null)
-                        .WithMany("TaskCompletions")
+                    b.HasOne("ClinicalPassport.Models.Task", "Task")
+                        .WithMany()
                         .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ClinicalPassport.Models.User", null)
-                        .WithMany("TaskCompletions")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("ClinicalPassport.Models.Task", b =>
-                {
-                    b.Navigation("TaskCompletions");
-                });
-
-            modelBuilder.Entity("ClinicalPassport.Models.User", b =>
-                {
-                    b.Navigation("TaskCompletions");
+                    b.Navigation("Task");
                 });
 #pragma warning restore 612, 618
         }

@@ -16,7 +16,7 @@ const reducer = (state, action) => {
 
 const initialState = {
     user: {
-        userId: 1111111
+        userId: 1111115
     }
 }
 
@@ -33,7 +33,9 @@ export default function DashboardProvider(props) {
     }
 
     useEffect(() => {
-        axios.get(`dashboard/users/${state.user.userId}`).then(res => {
+        axios.get(`/dashboard/index/${state.user.userId}`).then(res => {
+            debugger
+        }).catch(err => {
             debugger
         })
     }, [])
