@@ -42,7 +42,7 @@ function ProtectedRoute ({ component: Component, ...rest }) {
 function Logout() {
     const { actions } = useContext(AuthContext)
     useEffect(() => {
-        actions.updateState({authenticated: false})
+        actions.logout()
     }, [])
     return null
 }

@@ -1,8 +1,10 @@
-﻿import React, { useState, useEffect } from 'react'
+﻿import React, { useState, useEffect, useContext} from 'react'
 import { Menu, Header, Segment} from 'semantic-ui-react'
 import DashboardTab from './DashboardTab'
+import {DashboardContext} from './DashboardProvider'
 
 export default function Dashboard(props) {
+    const {state} = useContext(DashboardContext)
     const [activeTab, setActiveTab] = useState('documentation')
     const panes = {
         documentation: <DashboardTab menuType="Documentation" />,
@@ -17,7 +19,7 @@ export default function Dashboard(props) {
 
     return (
         <div>
-            <Segment inverted style={{ background: '#4ba23f', padding: 10, display: 'flex' }}><p style={{ fontSize: '1.5rem' }}>Welcome Back User</p></Segment>
+            <Segment inverted style={{ background: '#4ba23f', padding: 10, display: 'flex' }}><p style={{ fontSize: '1.5rem' }}>Welcome Back {state.user.firstName}</p></Segment>
             <Header as='h1' style={{fontSize: '3rem'}}>Passports</Header>
             <Menu pointing secondary>
                 <Menu.Item name="documentation" active={activeTab === 'documentation'} style={activeTab === 'documentation' ? {borderColor: "green"} : null} onClick={updateActiveTab}/>

@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace ClinicalPassport.Controllers
 {
-    public class HomeController : Controller
+    [ApiController]
+    [Route("home")]
+    public class HomeController : ControllerBase
     {
         private ClinicalPassportContext _context { get; set; }
 
@@ -16,13 +18,10 @@ namespace ClinicalPassport.Controllers
             _context = ctx;
         }
 
-        [HttpGet]
-        [Route("/test/{userId}")]
-        public IActionResult Index(string userId)
-        {
-
-            var data = _context.Users;
-            return Json(data);
+        [HttpPost]
+        [Route("login")]
+        public User Login([FromBody] int userId) {
+            return _context.Users.Find(userId);
         }
     }
 }

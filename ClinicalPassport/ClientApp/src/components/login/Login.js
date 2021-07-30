@@ -1,10 +1,13 @@
 import React, {useContext, useState} from 'react'
 import { Header, Segment, Divider, Input, Form, Label, Button } from 'semantic-ui-react'
 import { AuthContext } from './AuthProvider'
+import { useHistory } from 'react-router-dom'
 
 export function Login(props) {
     const {state, actions} = useContext(AuthContext)
     const [userName, setUserName] = useState()
+    const history = useHistory()
+
 
     const updateUserName = (e, data) => {
         setUserName(data.value)
@@ -12,7 +15,9 @@ export function Login(props) {
     const handleSubmit = (e, data) => {
         e.preventDefault()
         
-        actions.updateState({authenticated: true})
+        actions.login({ username: userName, password: '' }).then(res => {
+            !res && history.push('/')
+        })        
     } 
     
     return (

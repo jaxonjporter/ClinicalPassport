@@ -1,7 +1,8 @@
-﻿import React, { useReducer, useEffect } from 'react'
+﻿import React, { useReducer, useEffect, useContext } from 'react'
 import axios from 'axios'
+import { AuthContext } from '../login/AuthProvider'
 
-export const DashboardContext = React.createContext() 
+export const DashboardContext = React.createContext()
 
 const actions = {
     UPDATE_STATE: 'UPDATE_STATE'
@@ -10,7 +11,7 @@ const actions = {
 const reducer = (state, action) => {
     switch (action.type) {
         case actions.UPDATE_STATE:
-            return ({...state, ...action.obj})
+            return ({ ...state, ...action.obj })
     }
 }
 
@@ -22,8 +23,9 @@ const initialState = {
 
 export default function DashboardProvider(props) {
     const [state, dispatch] = useReducer(reducer, initialState)
+    const { state: { user } } = useContext(AuthContext)
 
-    const updateState = async (obj) => dispatch(state, { type: actions.UPDATE_STATE, obj })
+    const updateState = async (obj) => dispatch({ type: actions.UPDATE_STATE, obj })
 
     const value = {
         state,
@@ -33,12 +35,10 @@ export default function DashboardProvider(props) {
     }
 
     useEffect(() => {
-        axios.get(`/dashboard/index/${state.user.userId}`).then(res => {
-            debugger
-        }).catch(err => {
-            debugger
+        axios.get(`/dashboard/index/${user.userId}`).then(res => {
+            updateState(res.data)
         })
-    }, [])
+    }, [user.userId])
 
     return (
         <DashboardContext.Provider value={value}>
