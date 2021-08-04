@@ -10,5 +10,6 @@ namespace ClinicalPassport.Models.ViewModels
         public User User { get; set; }
 
         public List<TaskCompletion> TaskCompletions { get; set; }
+      
     }
 }

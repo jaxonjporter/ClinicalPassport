@@ -4,14 +4,16 @@ using ClinicalPassport.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ClinicalPassport.Migrations
 {
     [DbContext(typeof(ClinicalPassportContext))]
-    partial class ClinicalPassportContextModelSnapshot : ModelSnapshot
+    [Migration("20210804022743_addMoreCompletions")]
+    partial class addMoreCompletions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

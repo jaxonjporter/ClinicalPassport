@@ -4,14 +4,16 @@ using ClinicalPassport.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ClinicalPassport.Migrations
 {
     [DbContext(typeof(ClinicalPassportContext))]
-    partial class ClinicalPassportContextModelSnapshot : ModelSnapshot
+    [Migration("20210804011811_addStudentCompletedColumn")]
+    partial class addStudentCompletedColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,7 +195,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 1,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 301, DateTimeKind.Local).AddTicks(5902),
+                            InitialDate = new DateTime(2021, 8, 3, 19, 18, 10, 698, DateTimeKind.Local).AddTicks(7537),
                             PreceptorInitial = "",
                             PreceptorUserId = 1111112,
                             StudentCompleted = true,
@@ -205,7 +207,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 2,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7200),
+                            InitialDate = new DateTime(2021, 8, 3, 19, 18, 10, 702, DateTimeKind.Local).AddTicks(3445),
                             PreceptorInitial = "JP",
                             PreceptorUserId = 1111112,
                             StudentCompleted = true,
@@ -217,7 +219,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 3,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7330),
+                            InitialDate = new DateTime(2021, 8, 3, 19, 18, 10, 702, DateTimeKind.Local).AddTicks(3542),
                             PreceptorInitial = "JP",
                             PreceptorUserId = 1111112,
                             StudentCompleted = true,
@@ -229,7 +231,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 4,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7345),
+                            InitialDate = new DateTime(2021, 8, 3, 19, 18, 10, 702, DateTimeKind.Local).AddTicks(3555),
                             PreceptorInitial = "",
                             PreceptorUserId = 1111112,
                             StudentCompleted = false,
@@ -241,7 +243,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 5,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7354),
+                            InitialDate = new DateTime(2021, 8, 3, 19, 18, 10, 702, DateTimeKind.Local).AddTicks(3560),
                             PreceptorInitial = "JP",
                             PreceptorUserId = 1111112,
                             StudentCompleted = true,
@@ -253,36 +255,12 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 6,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7363),
+                            InitialDate = new DateTime(2021, 8, 3, 19, 18, 10, 702, DateTimeKind.Local).AddTicks(3565),
                             PreceptorInitial = "",
                             PreceptorUserId = 1111112,
                             StudentCompleted = false,
                             StudentUserId = 1111115,
                             TaskId = 9,
-                            TaskRating = 3
-                        },
-                        new
-                        {
-                            TaskCompletionId = 7,
-                            FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7372),
-                            PreceptorInitial = "",
-                            PreceptorUserId = 1111112,
-                            StudentCompleted = false,
-                            StudentUserId = 1111115,
-                            TaskId = 4,
-                            TaskRating = 3
-                        },
-                        new
-                        {
-                            TaskCompletionId = 8,
-                            FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7381),
-                            PreceptorInitial = "",
-                            PreceptorUserId = 1111112,
-                            StudentCompleted = false,
-                            StudentUserId = 1111115,
-                            TaskId = 3,
                             TaskRating = 3
                         });
                 });
@@ -362,7 +340,7 @@ namespace ClinicalPassport.Migrations
                             UserId = 1111115,
                             Address = "1 Anywhere Street",
                             Email = "dw22@gmail.com",
-                            FirstName = "Michael",
+                            FirstName = "Micheal",
                             LastName = "Scott",
                             Phone = "4358858889",
                             Role = "student"

@@ -41,6 +41,16 @@ namespace ClinicalPassport.Controllers
             return dashboardViewModel;
         }
         
+        [HttpGet("progress/{userId}/{categoryId}")]
+        public ProgressViewModel Progress(int userId, int categoryId)
+        {
+            var taskCompletions = _context.TaskCompletions.Include(tc => tc.Task).Where(tc => tc.StudentUserId == userId && tc.Task.CategoryID == categoryId).ToList();
+            var tasks = _context.Tasks.Where(t => t.CategoryID == categoryId).ToList();
+            var progressViewModel = new ProgressViewModel(taskCompletions, categoryId, tasks);
+
+            return progressViewModel;
+        }
+        
         [HttpGet("/users/{id}")]
         public List<User> Users(int id)
         {

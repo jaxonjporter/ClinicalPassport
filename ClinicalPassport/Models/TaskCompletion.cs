@@ -25,6 +25,8 @@ namespace ClinicalPassport.Models
 
 		public DateTime InitialDate { get; set; }
 
+		public bool StudentCompleted { get; set; }
+
 		public int TaskRating { get; set; }
     }
 }

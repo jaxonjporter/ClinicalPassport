@@ -17,7 +17,7 @@ const reducer = (state, action) => {
 
 const initialState = {
     user: {
-        userId: 1111115
+        userId: null
     }
 }
 

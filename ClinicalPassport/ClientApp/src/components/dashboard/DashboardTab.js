@@ -1,28 +1,35 @@
-﻿import React, { useEffect } from 'react'
+﻿import React, { useContext, useEffect, useState } from 'react'
 import {Header, Segment, Table, Progress} from 'semantic-ui-react'
+import { DashboardContext } from './DashboardProvider'
+import ProgressBars from './ProgressBar'
+import axios from 'axios'
 
-export default function DashboardTab(props) {
+const categories = {
+    Documentation: 1,
+    Procedural: 2,
+    Screening: 3,
+    Diagnostic: 4
+}
 
-    //useEffect(() => {
-    //    console.log(props.menuType)
+export default function DashboardTab({ menuType }) {
+    const { state: { user }, actions } = useContext(DashboardContext)
+    const [data, setData] = useState({})
 
-    //}, [props.menuType])
+
+    useEffect(() => {
+        if (user.userId) getProgress(user.userId, categories[menuType]).then((viewModel) => {
+            if (viewModel) setData({ ...viewModel, completedTasks: getTasks(viewModel.taskCompletions)})
+        })
+    }, [menuType, user.userId])
+
 
     return (
         <div>
-        <Segment>
-                <Header as='h3'><strong>{props.menuType} Progress</strong></Header>
-                <br />
-                <p style={{fontSize: '10px'}}> NOT COMPLETED </p>
-                <Progress percent={40} size="tiny" color="red" />
-                <p style={{ fontSize: '10px' }}> UNDER REVIEW </p>
-                <Progress percent={25} size="tiny" color="orange" />
-                <p style={{ fontSize: '10px' }}> COMPLETED </p>
-                <Progress percent={59} size="tiny" color="green" />
-            </Segment>
+            <ProgressBars menuType={menuType} notComplete={data.notCompletePercent} completed={data.completedPercent} underReview={ data.underReviewPercent}/>
             <Segment style={{ padding: 0 }} >
+
             <div style={{ padding: 10, display: 'flex', justifyContent: 'space-between' }}>
-                <Header as='h3'><strong>Tasks (22)</strong></Header>
+                    <Header as='h3'><strong>Tasks ({ data.tasks && data.tasks.length})</strong></Header>
             </div>
             <Table attached='top'>
                     <Table.Header style={{ color:"#4ba23f" }}>
@@ -34,8 +41,43 @@ export default function DashboardTab(props) {
                             <Table.HeaderCell></Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
+                    <Table.Body>
+                        {data.tasks
+                            ? data.tasks.map(t => 
+                            <Table.Row>
+                                    <Table.Cell>{t.description}</Table.Cell>
+                                    <Table.Cell>{ menuType }</Table.Cell>
+                                    <Table.Cell>{ data.completedTasks.some(c => c.completed && t.taskId === c.taskId) ? "Yes" : "No" }</Table.Cell>
+                                    <Table.Cell>{ t.required ? "Yes" : "No" }</Table.Cell>
+                                    <Table.Cell>Submit for review</Table.Cell>
+                                </Table.Row>
+                                )
+                            : null
+                            }
+                    </Table.Body>
             </Table>
             </Segment>
             </div>
     )
+}
+
+
+function getTasks(taskCompletions) {
+    let tasks = taskCompletions.reduce((acc, tc) => {
+        return [...acc, tc.task]
+    }, [])
+    return tasks
+}
+
+
+
+const getProgress = async (userId, categoryId) => {
+    return axios.get(`/dashboard/progress/${userId}/${categoryId}`).then(res => {
+
+        return res.data
+    })
+        .catch(err => {
+            console.log(err)
+        })
+
 }
