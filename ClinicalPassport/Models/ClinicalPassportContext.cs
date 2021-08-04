@@ -186,6 +186,10 @@ namespace ClinicalPassport.Models
                 }
             );
 
+            //modelBuilder.Entity<TaskCompletion>().HasOne(t => t.Student).WithMany(s => s.StudentTaskCompletions);
+            //modelBuilder.Entity<TaskCompletion>().HasOne(t => t.Preceptor).WithMany(s => s.PreceptorTaskCompletions);
+            //modelBuilder.Entity<TaskCompletion>().HasOne(t => t.Faculty).WithMany(s => s.FacultyTaskCompletions);
+            //modelBuilder.Entity<TaskCompletion>().HasOne(t => t.Task);
             modelBuilder.Entity<TaskCompletion>()
                 .HasData(
                 new TaskCompletion

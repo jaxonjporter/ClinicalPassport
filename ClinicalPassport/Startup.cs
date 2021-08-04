@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.Json.Serialization;
 
 namespace ClinicalPassport
 {
@@ -23,7 +24,8 @@ namespace ClinicalPassport
 		public void ConfigureServices(IServiceCollection services)
 		{
 
-			services.AddControllersWithViews();
+			services.AddControllersWithViews()
+                   .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
 			// In production, the React files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>
@@ -61,6 +63,9 @@ namespace ClinicalPassport
 				endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller}/{action=Index}/{id?}");
+				//endpoints.MapControllerRoute(
+				//	name: "api",
+				//	pattern: "{controller}/{action=Index}/{id?}");
 			});
 
 			app.UseSpa(spa =>

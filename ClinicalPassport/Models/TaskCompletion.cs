@@ -8,17 +8,18 @@ namespace ClinicalPassport.Models
 	{
 		public int TaskCompletionId { get; set; }
 
-		[ForeignKey("TaskId")]
 		public int TaskId { get; set; }
+		public Task Task { get; set; }
 
-		[ForeignKey("UserId")]
 		public int StudentUserId { get; set; }
 
-		[ForeignKey("UserId")]
-		public int FacultyUserId { get; set; }
+		//public User Student { get; set; }
 
-		[ForeignKey("UserId")]
+		public int FacultyUserId { get; set; }
+		//public User Faculty { get; set; }
+
 		public int PreceptorUserId { get; set; }
+		//public User Preceptor { get; set; }
 
 		public string PreceptorInitial { get; set; }
 

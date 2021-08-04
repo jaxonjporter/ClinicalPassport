@@ -71,8 +71,7 @@ namespace ClinicalPassport.Migrations
                     PreceptorUserId = table.Column<int>(type: "int", nullable: false),
                     PreceptorInitial = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InitialDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TaskRating = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    TaskRating = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,12 +82,6 @@ namespace ClinicalPassport.Migrations
                         principalTable: "Tasks",
                         principalColumn: "TaskId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TaskCompletions_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -135,26 +128,21 @@ namespace ClinicalPassport.Migrations
 
             migrationBuilder.InsertData(
                 table: "TaskCompletions",
-                columns: new[] { "TaskCompletionId", "FacultyUserId", "InitialDate", "PreceptorInitial", "PreceptorUserId", "StudentUserId", "TaskId", "TaskRating", "UserId" },
+                columns: new[] { "TaskCompletionId", "FacultyUserId", "InitialDate", "PreceptorInitial", "PreceptorUserId", "StudentUserId", "TaskId", "TaskRating" },
                 values: new object[,]
                 {
-                    { 2, 1111117, new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7482), "JP", 1111112, 1111115, 2, 5, null },
-                    { 3, 1111117, new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7727), "JP", 1111112, 1111115, 4, 4, null },
-                    { 1, 1111117, new DateTime(2021, 6, 19, 13, 38, 45, 842, DateTimeKind.Local).AddTicks(2445), "JP", 1111112, 1111115, 1, 4, null },
-                    { 5, 1111117, new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7767), "JP", 1111112, 1111114, 1, 5, null },
-                    { 4, 1111117, new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7749), "JP", 1111112, 1111115, 5, 2, null },
-                    { 6, 1111117, new DateTime(2021, 6, 19, 13, 38, 45, 848, DateTimeKind.Local).AddTicks(7782), "JP", 1111112, 1111115, 9, 3, null }
+                    { 2, 1111117, new DateTime(2021, 7, 26, 20, 19, 23, 41, DateTimeKind.Local).AddTicks(7812), "JP", 1111112, 1111115, 2, 5 },
+                    { 3, 1111117, new DateTime(2021, 7, 26, 20, 19, 23, 41, DateTimeKind.Local).AddTicks(7844), "JP", 1111112, 1111115, 4, 4 },
+                    { 1, 1111117, new DateTime(2021, 7, 26, 20, 19, 23, 39, DateTimeKind.Local).AddTicks(8999), "JP", 1111112, 1111115, 1, 4 },
+                    { 5, 1111117, new DateTime(2021, 7, 26, 20, 19, 23, 41, DateTimeKind.Local).AddTicks(7852), "JP", 1111112, 1111114, 1, 5 },
+                    { 4, 1111117, new DateTime(2021, 7, 26, 20, 19, 23, 41, DateTimeKind.Local).AddTicks(7849), "JP", 1111112, 1111115, 5, 2 },
+                    { 6, 1111117, new DateTime(2021, 7, 26, 20, 19, 23, 41, DateTimeKind.Local).AddTicks(7855), "JP", 1111112, 1111115, 9, 3 }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_TaskCompletions_TaskId",
                 table: "TaskCompletions",
                 column: "TaskId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TaskCompletions_UserId",
-                table: "TaskCompletions",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_CategoryID",
@@ -168,10 +156,10 @@ namespace ClinicalPassport.Migrations
                 name: "TaskCompletions");
 
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Tasks");
 
             migrationBuilder.DropTable(
                 name: "Categories");
