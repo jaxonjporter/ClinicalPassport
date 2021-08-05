@@ -157,7 +157,7 @@ namespace ClinicalPassport.Models
                 new User
                 {
                     UserId = 1111115,
-                    FirstName = "Micheal",
+                    FirstName = "Michael",
                     LastName = "Scott",
                     Address = "1 Anywhere Street",
                     Email = "dw22@gmail.com",
@@ -199,8 +199,9 @@ namespace ClinicalPassport.Models
                     StudentUserId = 1111115,
                     FacultyUserId = 1111117,
                     PreceptorUserId = 1111112,
-                    PreceptorInitial = "JP",
+                    PreceptorInitial = "",
                     InitialDate = DateTime.Now,
+                    StudentCompleted = true,
                     TaskRating = 4
                 },
                 new TaskCompletion
@@ -212,6 +213,7 @@ namespace ClinicalPassport.Models
                     PreceptorUserId = 1111112,
                     PreceptorInitial = "JP",
                     InitialDate = DateTime.Now,
+                    StudentCompleted = true,
                     TaskRating = 5
                 },
                 new TaskCompletion
@@ -223,6 +225,7 @@ namespace ClinicalPassport.Models
                     PreceptorUserId = 1111112,
                     PreceptorInitial = "JP",
                     InitialDate = DateTime.Now,
+                    StudentCompleted = true,
                     TaskRating = 4
                 },
                 new TaskCompletion
@@ -232,8 +235,9 @@ namespace ClinicalPassport.Models
                     StudentUserId = 1111115,
                     FacultyUserId = 1111117,
                     PreceptorUserId = 1111112,
-                    PreceptorInitial = "JP",
+                    PreceptorInitial = "",
                     InitialDate = DateTime.Now,
+                    StudentCompleted = false,
                     TaskRating = 2
                 },
                 new TaskCompletion
@@ -245,6 +249,7 @@ namespace ClinicalPassport.Models
                     PreceptorUserId = 1111112,
                     PreceptorInitial = "JP",
                     InitialDate = DateTime.Now,
+                    StudentCompleted = true,
                     TaskRating = 5
                 },
                 new TaskCompletion
@@ -254,11 +259,72 @@ namespace ClinicalPassport.Models
                     StudentUserId = 1111115,
                     FacultyUserId = 1111117,
                     PreceptorUserId = 1111112,
-                    PreceptorInitial = "JP",
+                    PreceptorInitial = "",
                     InitialDate = DateTime.Now,
+                    StudentCompleted = false,
+                    TaskRating = 3
+                },
+                new TaskCompletion
+                {
+                    TaskCompletionId = 7,
+                    TaskId = 7,
+                    StudentUserId = 1111115,
+                    FacultyUserId = 1111117,
+                    PreceptorUserId = 1111112,
+                    PreceptorInitial = "",
+                    InitialDate = DateTime.Now,
+                    StudentCompleted = false,
+                    TaskRating = 3
+                },
+                new TaskCompletion
+                {
+                    TaskCompletionId = 8,
+                    TaskId = 3,
+                    StudentUserId = 1111115,
+                    FacultyUserId = 1111117,
+                    PreceptorUserId = 1111112,
+                    PreceptorInitial = "",
+                    InitialDate = DateTime.Now,
+                    StudentCompleted = false,
+                    TaskRating = 3
+                },
+                new TaskCompletion
+                {
+                    TaskCompletionId = 9,
+                    TaskId = 6,
+                    StudentUserId = 1111115,
+                    FacultyUserId = 1111117,
+                    PreceptorUserId = 1111112,
+                    PreceptorInitial = "",
+                    InitialDate = DateTime.Now,
+                    StudentCompleted = false,
+                    TaskRating = 3
+                },
+                new TaskCompletion
+                {
+                    TaskCompletionId = 10,
+                    TaskId = 8,
+                    StudentUserId = 1111115,
+                    FacultyUserId = 1111117,
+                    PreceptorUserId = 1111112,
+                    PreceptorInitial = "",
+                    InitialDate = DateTime.Now,
+                    StudentCompleted = false,
+                    TaskRating = 3
+                },
+                new TaskCompletion
+                {
+                    TaskCompletionId = 11,
+                    TaskId = 10,
+                    StudentUserId = 1111115,
+                    FacultyUserId = 1111117,
+                    PreceptorUserId = 1111112,
+                    PreceptorInitial = "",
+                    InitialDate = DateTime.Now,
+                    StudentCompleted = false,
                     TaskRating = 3
                 }
-            );
+            ) ;
         }
     }
 }

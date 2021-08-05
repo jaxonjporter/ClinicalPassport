@@ -10,7 +10,7 @@ export default function Dashboard(props) {
         documentation: <DashboardTab menuType="Documentation" />,
         procedural: <DashboardTab menuType="Procedural" />,
         screening: <DashboardTab menuType="Screening" />,
-        diagnosis: <DashboardTab menuType="Diagnosis and Management" />
+        diagnosis: <DashboardTab menuType="Diagnostic" />
     }
 
     const updateActiveTab = (e, { name }) => {setActiveTab(name)}

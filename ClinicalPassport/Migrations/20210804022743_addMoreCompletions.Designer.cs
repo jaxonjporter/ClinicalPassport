@@ -4,14 +4,16 @@ using ClinicalPassport.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ClinicalPassport.Migrations
 {
     [DbContext(typeof(ClinicalPassportContext))]
-    partial class ClinicalPassportContextModelSnapshot : ModelSnapshot
+    [Migration("20210804022743_addMoreCompletions")]
+    partial class addMoreCompletions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,7 +195,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 1,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 4, 20, 43, 9, 148, DateTimeKind.Local).AddTicks(7781),
+                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 301, DateTimeKind.Local).AddTicks(5902),
                             PreceptorInitial = "",
                             PreceptorUserId = 1111112,
                             StudentCompleted = true,
@@ -205,7 +207,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 2,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 4, 20, 43, 9, 152, DateTimeKind.Local).AddTicks(9343),
+                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7200),
                             PreceptorInitial = "JP",
                             PreceptorUserId = 1111112,
                             StudentCompleted = true,
@@ -217,7 +219,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 3,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 4, 20, 43, 9, 152, DateTimeKind.Local).AddTicks(9505),
+                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7330),
                             PreceptorInitial = "JP",
                             PreceptorUserId = 1111112,
                             StudentCompleted = true,
@@ -229,7 +231,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 4,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 4, 20, 43, 9, 152, DateTimeKind.Local).AddTicks(9515),
+                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7345),
                             PreceptorInitial = "",
                             PreceptorUserId = 1111112,
                             StudentCompleted = false,
@@ -241,7 +243,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 5,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 4, 20, 43, 9, 152, DateTimeKind.Local).AddTicks(9521),
+                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7354),
                             PreceptorInitial = "JP",
                             PreceptorUserId = 1111112,
                             StudentCompleted = true,
@@ -253,7 +255,7 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 6,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 4, 20, 43, 9, 152, DateTimeKind.Local).AddTicks(9527),
+                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7363),
                             PreceptorInitial = "",
                             PreceptorUserId = 1111112,
                             StudentCompleted = false,
@@ -265,60 +267,24 @@ namespace ClinicalPassport.Migrations
                         {
                             TaskCompletionId = 7,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 4, 20, 43, 9, 152, DateTimeKind.Local).AddTicks(9533),
+                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7372),
                             PreceptorInitial = "",
                             PreceptorUserId = 1111112,
                             StudentCompleted = false,
                             StudentUserId = 1111115,
-                            TaskId = 7,
+                            TaskId = 4,
                             TaskRating = 3
                         },
                         new
                         {
                             TaskCompletionId = 8,
                             FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 4, 20, 43, 9, 152, DateTimeKind.Local).AddTicks(9538),
+                            InitialDate = new DateTime(2021, 8, 3, 20, 27, 42, 307, DateTimeKind.Local).AddTicks(7381),
                             PreceptorInitial = "",
                             PreceptorUserId = 1111112,
                             StudentCompleted = false,
                             StudentUserId = 1111115,
                             TaskId = 3,
-                            TaskRating = 3
-                        },
-                        new
-                        {
-                            TaskCompletionId = 9,
-                            FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 4, 20, 43, 9, 152, DateTimeKind.Local).AddTicks(9544),
-                            PreceptorInitial = "",
-                            PreceptorUserId = 1111112,
-                            StudentCompleted = false,
-                            StudentUserId = 1111115,
-                            TaskId = 6,
-                            TaskRating = 3
-                        },
-                        new
-                        {
-                            TaskCompletionId = 10,
-                            FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 4, 20, 43, 9, 152, DateTimeKind.Local).AddTicks(9549),
-                            PreceptorInitial = "",
-                            PreceptorUserId = 1111112,
-                            StudentCompleted = false,
-                            StudentUserId = 1111115,
-                            TaskId = 8,
-                            TaskRating = 3
-                        },
-                        new
-                        {
-                            TaskCompletionId = 11,
-                            FacultyUserId = 1111117,
-                            InitialDate = new DateTime(2021, 8, 4, 20, 43, 9, 152, DateTimeKind.Local).AddTicks(9554),
-                            PreceptorInitial = "",
-                            PreceptorUserId = 1111112,
-                            StudentCompleted = false,
-                            StudentUserId = 1111115,
-                            TaskId = 10,
                             TaskRating = 3
                         });
                 });
