@@ -26,18 +26,18 @@ namespace ClinicalPassport.Models.ViewModels
 
         private decimal GetCompletedPercent()
         {
-            return TaskCompletions.Count(tc => tc.StudentCompleted && tc.PreceptorInitial != "" && tc.Task.CategoryID == CategoryId) / (decimal)TaskCompletions.Count(tc => tc.Task.CategoryID == CategoryId) * 100;
+            return TaskCompletions.Count(tc => tc.StudentCompleted && tc.PreceptorInitial != "" && tc.Task.CategoryID == CategoryId) / (decimal)Tasks.Count(t => t.CategoryID == CategoryId) * 100;
         }
 
         private decimal GetUnderReviewPercent()
         {
-            return TaskCompletions.Count(tc => tc.StudentCompleted && tc.PreceptorInitial == "" && tc.Task.CategoryID == CategoryId) / (decimal)TaskCompletions.Count(tc => tc.Task.CategoryID == CategoryId) * 100;
+            return TaskCompletions.Count(tc => tc.StudentCompleted && tc.PreceptorInitial == "" && tc.Task.CategoryID == CategoryId) / (decimal)Tasks.Count(t => t.CategoryID == CategoryId) * 100;
         }
 
 
         private decimal GetNotCompletePercent()
         {
-            return TaskCompletions.Count(tc => !tc.StudentCompleted && tc.Task.CategoryID == CategoryId) / (decimal)TaskCompletions.Count(tc => tc.Task.CategoryID == CategoryId) * 100;
+            return TaskCompletions.Count(tc => !tc.StudentCompleted && tc.Task.CategoryID == CategoryId) / (decimal)Tasks.Count(t => t.CategoryID == CategoryId) * 100;
         }
     }
 }

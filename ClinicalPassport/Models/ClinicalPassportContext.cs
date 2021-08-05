@@ -267,7 +267,7 @@ namespace ClinicalPassport.Models
                 new TaskCompletion
                 {
                     TaskCompletionId = 7,
-                    TaskId = 4,
+                    TaskId = 7,
                     StudentUserId = 1111115,
                     FacultyUserId = 1111117,
                     PreceptorUserId = 1111112,
@@ -280,6 +280,42 @@ namespace ClinicalPassport.Models
                 {
                     TaskCompletionId = 8,
                     TaskId = 3,
+                    StudentUserId = 1111115,
+                    FacultyUserId = 1111117,
+                    PreceptorUserId = 1111112,
+                    PreceptorInitial = "",
+                    InitialDate = DateTime.Now,
+                    StudentCompleted = false,
+                    TaskRating = 3
+                },
+                new TaskCompletion
+                {
+                    TaskCompletionId = 9,
+                    TaskId = 6,
+                    StudentUserId = 1111115,
+                    FacultyUserId = 1111117,
+                    PreceptorUserId = 1111112,
+                    PreceptorInitial = "",
+                    InitialDate = DateTime.Now,
+                    StudentCompleted = false,
+                    TaskRating = 3
+                },
+                new TaskCompletion
+                {
+                    TaskCompletionId = 10,
+                    TaskId = 8,
+                    StudentUserId = 1111115,
+                    FacultyUserId = 1111117,
+                    PreceptorUserId = 1111112,
+                    PreceptorInitial = "",
+                    InitialDate = DateTime.Now,
+                    StudentCompleted = false,
+                    TaskRating = 3
+                },
+                new TaskCompletion
+                {
+                    TaskCompletionId = 11,
+                    TaskId = 10,
                     StudentUserId = 1111115,
                     FacultyUserId = 1111117,
                     PreceptorUserId = 1111112,

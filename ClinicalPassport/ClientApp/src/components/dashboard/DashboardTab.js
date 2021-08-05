@@ -1,8 +1,10 @@
 ﻿import React, { useContext, useEffect, useState } from 'react'
-import {Header, Segment, Table, Progress} from 'semantic-ui-react'
+import {Header, Segment, Table, Progress, Icon} from 'semantic-ui-react'
 import { DashboardContext } from './DashboardProvider'
 import ProgressBars from './ProgressBar'
 import axios from 'axios'
+import styled from 'styled-components'
+import TaskTableRow from './TaskTableRow'
 
 const categories = {
     Documentation: 1,
@@ -32,25 +34,20 @@ export default function DashboardTab({ menuType }) {
                     <Header as='h3'><strong>Tasks ({ data.tasks && data.tasks.length})</strong></Header>
             </div>
             <Table attached='top'>
-                    <Table.Header style={{ color:"#4ba23f" }}>
-                        <Table.Row>
-                            <Table.HeaderCell>TASK NAME</Table.HeaderCell>
-                            <Table.HeaderCell>TYPE</Table.HeaderCell>
-                            <Table.HeaderCell>STATUS</Table.HeaderCell>
-                            <Table.HeaderCell>REQUIRED</Table.HeaderCell>
-                            <Table.HeaderCell></Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
+                    <CustomTableHeader style={{ color:"#4ba23f !important" }}>
+                        <CustomTableHeaderRow>
+                            <CustomTableHeaderCell></CustomTableHeaderCell>
+                            <CustomTableHeaderCell>TASK NAME</CustomTableHeaderCell>
+                            <CustomTableHeaderCell>TYPE</CustomTableHeaderCell>
+                            <CustomTableHeaderCell>STATUS</CustomTableHeaderCell>
+                            <CustomTableHeaderCell>REQUIRED</CustomTableHeaderCell>
+                            <CustomTableHeaderCell></CustomTableHeaderCell>
+                        </CustomTableHeaderRow>
+                    </CustomTableHeader>
                     <Table.Body>
                         {data.tasks
-                            ? data.tasks.map(t => 
-                            <Table.Row>
-                                    <Table.Cell>{t.description}</Table.Cell>
-                                    <Table.Cell>{ menuType }</Table.Cell>
-                                    <Table.Cell>{ data.completedTasks.some(c => c.completed && t.taskId === c.taskId) ? "Yes" : "No" }</Table.Cell>
-                                    <Table.Cell>{ t.required ? "Yes" : "No" }</Table.Cell>
-                                    <Table.Cell>Submit for review</Table.Cell>
-                                </Table.Row>
+                            ? data.tasks.map((t, i) =>
+                                <TaskTableRow key={i} task={t} completedTasks={data.completedTasks} menuType={menuType} taskCompletion={data.taskCompletions.find(tc => tc.taskId === t.taskId)}/>
                                 )
                             : null
                             }
@@ -60,6 +57,19 @@ export default function DashboardTab({ menuType }) {
             </div>
     )
 }
+
+const CustomTableHeaderRow = styled(Table.Row)`
+    background-color: #4BA23F !important;
+`
+const CustomTableHeaderCell = styled(Table.Cell)`
+    background-color: #4BA23F !important;
+    color: white !important;
+`
+const CustomTableHeader = styled(Table.Header)`
+    background-color: #4BA23F !important;
+`
+
+
 
 
 function getTasks(taskCompletions) {

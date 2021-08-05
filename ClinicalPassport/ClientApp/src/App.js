@@ -4,8 +4,6 @@ import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import 'semantic-ui-css/semantic.min.css'
 import { Container } from 'semantic-ui-react'
-
-
 import './custom.css'
 import DashboardApp from './components/dashboard/DashboardApp';
 import { Login } from './components/login/Login';
@@ -57,7 +55,6 @@ function NavBar(props) {
                     <Link style={{textDecoration: 'none', color: 'white'}} to='/'><h4>UVU Physician Assistant Clinical Passport</h4></Link>
                 </div>
                 <div style={{ display: 'flex'}}>
-                    <div style={{margin: '0 10px 0 0'}}>Profile</div>
                     <Link to={state.authenticated ? '/logout': '/login'} style={{textDecoration: 'none', color: 'white'}}>{state.authenticated ? 'Logout' : 'Login'}</Link>
                 </div>
             </div>
