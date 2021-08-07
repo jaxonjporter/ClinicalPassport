@@ -1,5 +1,5 @@
 import React, { Component, useContext, useEffect } from 'react';
-import { Route, useHistory, Link, Redirect } from 'react-router-dom';
+import { Route, useHistory, Link, Redirect, Switch } from 'react-router-dom';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import 'semantic-ui-css/semantic.min.css'
@@ -14,12 +14,13 @@ export default function App (props) {
     return (
             <NavBar color="#225d35">
             <Container>
+                <Switch>
                 <Route exact path='/login' component={Login} />
                 <ProtectedRoute exact path='/counter' component={Counter} />
                 <ProtectedRoute exact path='/fetch-data' component={FetchData} />
-                <ProtectedRoute exact path='/dashboard' component={DashboardApp} />
-                <PreceptorRoute exact path='/' component={PreceptorApp} />
+                <PreceptorRoute exact path='/' />
                 <ProtectedRoute exact path='/logout' component={Logout} />
+                    </Switch>
             </Container >
             </NavBar>
     );
@@ -30,9 +31,8 @@ function PreceptorRoute({ component: Component, ...rest }) {
 
     return (
         <Route {...rest} render={props =>
-            state.authenticated && state.user.role === "preceptor"
-                ? <Component {...props} />
-                : <Redirect to={{ pathname: "/dashboard", state: { from: props.location } }} />
+            state.authenticated ? state.user.role === "preceptor" ? <PreceptorApp /> : <DashboardApp />
+                : <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
         }
         />
     )

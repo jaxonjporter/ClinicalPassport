@@ -19,14 +19,16 @@ export default function PreceptorTaskTableRow({ task, completedTasks, taskComple
     )
 }
 
+const headerConfig = {
+    'content-type': "application/json",
+    "Accept": "application/json"
+}
+
 function SubmitLink({ taskCompletion }) {
     const [active, setActive] = useState(true)
 
     const deny = () => {
-        const headerConfig = {
-            'content-type': "application/json",
-            "Accept": "application/json"
-        }
+
         return axios({
             method: 'post',
             url: '/preceptor/deny',
@@ -39,7 +41,20 @@ function SubmitLink({ taskCompletion }) {
         })
     }
 
-    return <div><CustomLink active={active}>Approve</CustomLink> | <CustomLink active={active} onClick={ deny}>Deny</CustomLink> </div>
+    const approve = () => {
+        return axios({
+            method: 'post',
+            url: '/preceptor/approve',
+            data: taskCompletion.taskCompletionId,
+            headers: headerConfig
+        }).then(res => {
+            if (res.status == 200) {
+                setActive(false)
+            }
+        })
+    }
+
+    return <div><CustomLink active={active} onClick={approve}>Approve</CustomLink> | <CustomLink active={active} onClick={ deny}>Deny</CustomLink> </div>
 }
 
 const CustomLink = styled.p`

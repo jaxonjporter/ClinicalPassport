@@ -36,7 +36,7 @@ export function Login(props) {
                     </Form.Field>
                     <Form.Field>
                         <Header sub>Password</Header>
-                        <Input placeholder="Password" type="password" onChange={updateUserName}/>
+                        <Input placeholder="Password" type="password"/>
                     </Form.Field>
                     <Button type="submit">Login</Button>
                 </Form>
