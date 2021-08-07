@@ -1,5 +1,5 @@
-import React, { Component, useContext, useEffect } from 'react';
-import { Route, useHistory, Link, Redirect, Switch } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Route, Link, Redirect, Switch } from 'react-router-dom';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import 'semantic-ui-css/semantic.min.css'
@@ -31,7 +31,7 @@ function PreceptorRoute({ component: Component, ...rest }) {
 
     return (
         <Route {...rest} render={props =>
-            state.authenticated ? state.user.role === "preceptor" ? <PreceptorApp /> : <DashboardApp />
+            state.authenticated ? state.user.role !== "student" ? <PreceptorApp /> : <DashboardApp />
                 : <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
         }
         />
