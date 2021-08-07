@@ -1,14 +1,20 @@
 ﻿import React, { useEffect, useState } from 'react'
 import { Table, Icon, Label } from 'semantic-ui-react'
 import styled, { css } from 'styled-components'
-
+import axios from 'axios'
 
 export default function TaskTableRow({ task, completedTasks, menuType, taskCompletion }) {
     const [expanded, setExpanded] = useState(false)
+    const [submitted, setSubmitted] = useState(false)
 
     useEffect(() => {
         setExpanded(false)
     }, [menuType])
+
+    const updateSubmitted = (value) => {
+        taskCompletion.studentCompleted = value
+        setSubmitted(value)
+    }
 
     return (
         <>
@@ -18,7 +24,7 @@ export default function TaskTableRow({ task, completedTasks, menuType, taskCompl
                 <Table.Cell>{menuType}</Table.Cell>
                 <Table.Cell><StatusLabel taskCompletion={ taskCompletion }/></Table.Cell>
                 <Table.Cell>{task.required ? "Yes" : "No"}</Table.Cell>
-                <Table.Cell><SubmitLink taskCompletion={taskCompletion} /></Table.Cell>
+                <Table.Cell><SubmitLink taskCompletion={taskCompletion} updateSubmitted={updateSubmitted} /></Table.Cell>
             </Table.Row> 
             {expanded
                 ? <LargeRow>
@@ -29,7 +35,7 @@ export default function TaskTableRow({ task, completedTasks, menuType, taskCompl
                                 Preceptor: {taskCompletion.preceptorInitial}<br /><br />
                                 Date Completed: {formatDate(taskCompletion.initialDate, 'en-us')}
                             </>
-                            : <>Submitted for Review: { taskCompletion && taskCompletion.studentCompleted ? "Yes" : "No" } </>}</Table.Cell>
+                            : <>Submitted for Review: {submitted || taskCompletion && taskCompletion.studentCompleted ? "Yes" : "No" } </>}</Table.Cell>
                     <Table.Cell></Table.Cell>
                     <Table.Cell></Table.Cell>
                     <Table.Cell></Table.Cell>
@@ -42,8 +48,32 @@ export default function TaskTableRow({ task, completedTasks, menuType, taskCompl
     )
 }
 
-function SubmitLink({ taskCompletion }) {
-    return <CustomLink active={taskCompletion && !taskCompletion.studentCompleted}>Submit for Review</CustomLink>
+function SubmitLink({ taskCompletion, updateSubmitted }) {
+    const [active, setActive] = useState(false)
+
+    useEffect(() => {
+        setActive(taskCompletion && !taskCompletion.studentCompleted)
+    }, [taskCompletion])
+
+    const submitTask = () => {
+        const headerConfig = {
+            'content-type': "application/json",
+            "Accept": "application/json"
+        }
+        return axios({
+            method: 'post',
+            url: '/dashboard/submit',
+            data: taskCompletion.taskCompletionId,
+            headers: headerConfig
+        }).then(res => {
+            if (res.status == 200) {
+                setActive(false)
+                updateSubmitted(res.status == 200)
+            }
+        })
+    }
+
+    return <CustomLink onClick={submitTask} active={active}>Submit for Review</CustomLink>
 }
 
 const CustomLink = styled.p`

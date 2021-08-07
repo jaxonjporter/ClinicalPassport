@@ -6,6 +6,7 @@ import 'semantic-ui-css/semantic.min.css'
 import { Container } from 'semantic-ui-react'
 import './custom.css'
 import DashboardApp from './components/dashboard/DashboardApp';
+import PreceptorApp from './components/preceptor/PreceptorApp';
 import { Login } from './components/login/Login';
 import { AuthContext } from './components/login/AuthProvider';
 
@@ -16,26 +17,40 @@ export default function App (props) {
                 <Route exact path='/login' component={Login} />
                 <ProtectedRoute exact path='/counter' component={Counter} />
                 <ProtectedRoute exact path='/fetch-data' component={FetchData} />
-                <ProtectedRoute exact path='/' component={DashboardApp} />
+                <ProtectedRoute exact path='/dashboard' component={DashboardApp} />
+                <PreceptorRoute exact path='/' component={PreceptorApp} />
                 <ProtectedRoute exact path='/logout' component={Logout} />
             </Container >
             </NavBar>
     );
 }
 
+function PreceptorRoute({ component: Component, ...rest }) {
+    const { state } = useContext(AuthContext)
 
-function ProtectedRoute ({ component: Component, ...rest }) {
-    const {state} = useContext(AuthContext)
-
-    return(
+    return (
         <Route {...rest} render={props =>
-                state.authenticated 
+            state.authenticated && state.user.role === "preceptor"
                 ? <Component {...props} />
-                : <Redirect to={{ pathname: "/login", state: { from: props.location }}}/>
-            }
+                : <Redirect to={{ pathname: "/dashboard", state: { from: props.location } }} />
+        }
         />
     )
 }
+
+function ProtectedRoute({ component: Component, ...rest }) {
+    const { state } = useContext(AuthContext)
+
+    return (
+        <Route {...rest} render={props =>
+            state.authenticated && state.user.role !== "preceptor"
+                ? <Component {...props} />
+                : <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
+        }
+        />
+    )
+}
+
 
 function Logout() {
     const { actions } = useContext(AuthContext)

@@ -13,7 +13,7 @@ namespace ClinicalPassport.Models
 
 		public int StudentUserId { get; set; }
 
-		//public User Student { get; set; }
+		public User Student { get; set; }
 
 		public int FacultyUserId { get; set; }
 		//public User Faculty { get; set; }

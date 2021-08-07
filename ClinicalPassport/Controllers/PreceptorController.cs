@@ -11,12 +11,12 @@ namespace ClinicalPassport.Controllers
 {
     
     [ApiController]
-    [Route("dashboard")]
-    public class DashboardController : ControllerBase
+    [Route("preceptor")]
+    public class PreceptorController : ControllerBase
     {
         private ClinicalPassportContext _context { get; set; }
 
-        public DashboardController(ClinicalPassportContext ctx)
+        public PreceptorController(ClinicalPassportContext ctx)
         {
             _context = ctx;
         }
@@ -29,16 +29,16 @@ namespace ClinicalPassport.Controllers
             return new EmptyResult();
         }
 
-        [HttpGet("index/{id}")]
-        public DashboardViewModel Index(int id)
+        [HttpGet("{id}")]
+        public PreceptorViewModel Index(int id)
         {
-            var dashboardViewModel = new DashboardViewModel
+            var preceptorViewModel = new PreceptorViewModel
             {
                 User = _context.Users.Find(id),
-                TaskCompletions = _context.TaskCompletions.Include(tc => tc.Task).Where(tc => tc.StudentUserId == id).ToList()
+                TaskCompletions = _context.TaskCompletions.Include(tc => tc.Task.Category).Include(tc => tc.Student).Where(tc => tc.StudentCompleted).ToList()
             };
 
-            return dashboardViewModel;
+            return preceptorViewModel;
         }
         
         [HttpGet("progress/{userId}/{categoryId}")]
@@ -59,14 +59,27 @@ namespace ClinicalPassport.Controllers
         }
 
         [HttpPost]
-        [Route("submit")]
-        public TaskCompletion Submit([FromBody] int taskCompletionId)
+        [Route("deny")]
+        public TaskCompletion Deny([FromBody] int taskCompletionId)
         {
             var tc = _context.TaskCompletions.Find(taskCompletionId);
-            tc.StudentCompleted = true;
+            tc.StudentCompleted = false;
             _context.Update(tc);
             _context.SaveChanges();
             return tc;
         }
+
+        [HttpPost]
+        [Route("approve")]
+        public TaskCompletion Approve([FromBody] int taskCompletionId)
+        {
+            var tc = _context.TaskCompletions.Find(taskCompletionId);
+            tc.PreceptorInitial = "JP";
+            tc.InitialDate = DateTime.Today;
+            _context.Update(tc);
+            _context.SaveChanges();
+            return tc;
+        }
+
     }
 }

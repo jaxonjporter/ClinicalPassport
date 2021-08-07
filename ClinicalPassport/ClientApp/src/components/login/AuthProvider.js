@@ -30,7 +30,7 @@ export default function AuthProvider(props) {
             'content-type': "application/json",
             "Accept": "application/json"
         }
-
+        console.log(username)
         return axios({
             method: 'post',
             url: '/home/login',
@@ -38,7 +38,7 @@ export default function AuthProvider(props) {
             headers: headerConfig
         }).then(res => {
             updateState({user: res.data, authenticated: true}).then(() => {
-                window.localStorage.setItem('session', JSON.stringify({ username, password: password || 'none' }))
+                window.localStorage.setItem('session', JSON.stringify({ username, password: password, role: res.data.role || 'none' }))
                 return res
             })
         }).catch(err => {
@@ -54,11 +54,12 @@ export default function AuthProvider(props) {
     useEffect(() => {
         const session = window.localStorage.getItem('session')
         if (session) {
-            const { username, password } = JSON.parse(session)
+            const { username, password, role } = JSON.parse(session)
             const toSet = {
                 user: {
                     userId: username,
-                    password: password
+                    password: password,
+                    role: role
                 },
                 authenticated: true
             }
