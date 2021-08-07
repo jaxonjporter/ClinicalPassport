@@ -44,7 +44,7 @@ namespace ClinicalPassport.Controllers
         [HttpGet("progress/{userId}/{categoryId}")]
         public ProgressViewModel Progress(int userId, int categoryId)
         {
-            var taskCompletions = _context.TaskCompletions.Include(tc => tc.Task).Where(tc => tc.StudentUserId == userId && tc.Task.CategoryID == categoryId).ToList();
+            var taskCompletions = _context.TaskCompletions.Include(tc => tc.Task).Where(tc => tc.StudentUserId == userId && tc.Task.CategoryID == categoryId && tc.PreceptorInitial == string.Empty).ToList();
             var tasks = _context.Tasks.Where(t => t.CategoryID == categoryId).ToList();
             var progressViewModel = new ProgressViewModel(taskCompletions, categoryId, tasks);
 
@@ -76,6 +76,7 @@ namespace ClinicalPassport.Controllers
             var tc = _context.TaskCompletions.Find(taskCompletionId);
             tc.PreceptorInitial = "JP";
             tc.InitialDate = DateTime.Today;
+            tc.StudentCompleted = true;
             _context.Update(tc);
             _context.SaveChanges();
             return tc;

@@ -53,7 +53,9 @@ function SubmitLink({ taskCompletion, updateSubmitted }) {
 
     useEffect(() => {
         setActive(taskCompletion && !taskCompletion.studentCompleted)
+        debugger
     }, [taskCompletion])
+
 
     const submitTask = () => {
         const headerConfig = {
